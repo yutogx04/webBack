@@ -23,6 +23,8 @@ app.get('/', (req, res) => {
     if (err) throw err;
     result.forEach((row) => {
       row.date_of_birth = row.date_of_birth.toISOString().split('T')[0];
+      row.condition = row.conditon;
+      delete row.conditon;
     });
     res.send(result);
   });
