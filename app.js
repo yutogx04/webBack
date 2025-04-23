@@ -19,7 +19,7 @@ connection.connect()
 
 //routing
 app.get('/', (req, res) => {
-  connection.query('SELECT first_name,last_name,DATE(date_of_birth) AS date_of_birth,gender,contact,conditon FROM Patient;', function (err, result) {
+  connection.query('SELECT _id,first_name,last_name,DATE(date_of_birth) AS date_of_birth,gender,contact,conditon FROM Patient;', function (err, result) {
     if (err) throw err;
     result.forEach((row) => {
       row.date_of_birth = row.date_of_birth.toISOString().split('T')[0];
@@ -32,7 +32,6 @@ app.get('/', (req, res) => {
 
 app.post('/', (req, res) => {
   console.log(req.body);
-
   connection.query(
     'INSERT INTO Patient (first_name, last_name, date_of_birth, gender, contact, conditon)  VALUES ("'+
     req.body.first_name +'","'+
